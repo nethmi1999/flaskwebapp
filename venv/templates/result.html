@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Approximate shortest path covering all locations:</h1>
+    <p>Time: {{ output.total_time | round(6) }} hours</p>
+    <p>Distance: {{ output.total_distance | round(2) }} km</p>
+    <h2>Route:</h2>
+    <table>
+        <tr>
+            <th>Index</th>
+            <th>Place Name</th>
+            <th>Customer Name</th>
+            <th>Telephone Number</th>
+        </tr>
+        {% for idx, step in enumerate(output.route, start=1) %}
+        <tr>
+            <td>{{ idx }}</td>
+            <td>{{ step.place_name }}</td>
+            <td>{{ step.customer_name }}</td>
+            <td>{{ step.mobile_number }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
